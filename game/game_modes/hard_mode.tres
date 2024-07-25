@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameMode" load_steps=2 format=3 uid="uid://dyks0yfh4vrh3"]
+
+[ext_resource type="Script" path="res://game/game_modes/game_mode.gd" id="1_ewj4a"]
+
+[resource]
+script = ExtResource("1_ewj4a")
+acceleration = 350.0
+initial_speed = 100.0
+drop_multiplier = 5.0

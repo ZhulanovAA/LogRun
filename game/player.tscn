@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5dybwji54d2d"]
+
+[ext_resource type="Script" path="res://game/player.gd" id="1_vv5m4"]
+[ext_resource type="Resource" uid="uid://d3fsd2qn555td" path="res://game/game_modes/easy_mode.tres" id="2_kxs6s"]
+[ext_resource type="Texture2D" uid="uid://bcydcqoosvdf0" path="res://assets/log_run_1.png" id="3_vntj7"]
+
+[sub_resource type="Animation" id="Animation_nu7jm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Man:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1207, 108, 300, 700)]
+}
+
+[sub_resource type="Animation" id="Animation_mx5n4"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Man:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(905, 108, 300, 700), Rect2(1207, 108, 300, 700), Rect2(603, 108, 300, 700), Rect2(1207, 108, 300, 700), Rect2(905, 108, 300, 700)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dg4n"]
+_data = {
+"RESET": SubResource("Animation_nu7jm"),
+"run": SubResource("Animation_mx5n4")
+}
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_vv5m4")
+game_mode = ExtResource("2_kxs6s")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Man" type="Sprite2D" parent="Pivot"]
+position = Vector2(0, -650)
+texture = ExtResource("3_vntj7")
+region_enabled = true
+region_rect = Rect2(1207, 108, 300, 700)
+
+[node name="Log" type="Sprite2D" parent="."]
+texture = ExtResource("3_vntj7")
+region_enabled = true
+region_rect = Rect2(1, 208, 600, 600)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7dg4n")
+}
